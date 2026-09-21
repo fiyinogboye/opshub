@@ -1,0 +1,5 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Sign in · OpsHub</title><link rel="stylesheet" href="/css/app.css"></head>
+<body class="login-body"><main class="login-card"><div class="brand-mark">OH</div><p class="eyebrow">CAMPUS OPERATIONS</p><h1>Welcome to OpsHub</h1><p class="muted">Track incidents, coordinate teams, and keep every handoff accountable.</p>
+<div class="notice" th:if="${param.error}">Incorrect username or password.</div><div class="success" th:if="${param.logout}">You’ve signed out.</div>
+<form method="post" action="/login" class="login-form"><input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"><label>Username<input name="username" autocomplete="username" required autofocus></label><label>Password<input type="password" name="password" autocomplete="current-password" required></label><button type="submit">Sign in <span>→</span></button></form>
+<div class="demo"><strong>Demo account</strong><code>lead / demo1234</code></div></main></body></html>

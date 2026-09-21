@@ -1,0 +1,26 @@
+services:
+  db:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_DB: opshub
+      POSTGRES_USER: opshub
+      POSTGRES_PASSWORD: opshub
+    volumes:
+      - opshub-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U opshub"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+  app:
+    build: .
+    ports: ["8080:8080"]
+    environment:
+      DATABASE_URL: jdbc:postgresql://db:5432/opshub
+      DATABASE_USERNAME: opshub
+      DATABASE_PASSWORD: opshub
+    depends_on:
+      db:
+        condition: service_healthy
+volumes:
+  opshub-data:
