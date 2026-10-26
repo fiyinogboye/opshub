@@ -1,82 +1,27 @@
-# OpsHub
+# OpsHub – Campus Incident Management Platform
 
-OpsHub is a full-stack campus operations and incident-management platform. It turns the kinds of reports that disappear into calls, emails, and shift notes into a searchable queue with ownership, permissions, and a permanent audit trail.
+OpsHub is a backend application for managing incidents in a campus environment. It provides a centralized system for reporting, tracking, and managing incidents.
 
-![Java](https://img.shields.io/badge/Java-17-ED8B00) ![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.5-6DB33F) ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-17-4169E1) ![CI](https://img.shields.io/badge/CI-GitHub_Actions-2088FF)
-
-## Why this project exists
-
-Campus operations teams coordinate access-card failures, facilities problems, technology outages, and guest concerns across several buildings. OpsHub gives staff one clear workflow: report, triage, assign, resolve, and review.
+## Technologies
+- Java
+- Spring Boot
+- PostgreSQL
+- Docker
+- Maven
 
 ## Features
+- Create and manage incident reports
+- Track incident status and updates
+- Role-based access control
+- Search and filter incident records
+- Maintain incident audit history
 
-- Searchable and filterable incident queue
-- Live dashboard metrics and critical-incident visibility
-- Staff, lead, and administrator roles
-- Server-side validation and consistent API errors
-- Status workflow with a permanent audit history
-- Responsive, accessible interface with CSRF protection
-- H2 development mode and PostgreSQL production mode
-- Versioned production schema with Flyway
-- Unit/API tests and GitHub Actions CI
-- Multi-stage Docker image and one-command local stack
-
-## Architecture
-
-```mermaid
-flowchart TD
-    UI[Thymeleaf + JavaScript UI] --> API[Spring REST controllers]
-    API --> SEC[Spring Security]
-    API --> SVC[Service layer]
-    SVC --> JPA[Spring Data JPA]
-    SVC --> AUDIT[Audit history]
-    JPA --> DB[(H2 / PostgreSQL)]
-```
-
-The controller layer handles HTTP and validation, the service layer owns business rules and transactions, and repositories isolate persistence. Authentication uses server-managed sessions; method-level authorization protects lead-only workflow actions.
-
-## Run locally
-
-Requirements: Java 17+ and Maven 3.9+.
+## Running the Application
+The application is built using Maven and Spring Boot.
 
 ```bash
 mvn spring-boot:run
 ```
 
-Visit `http://localhost:8080` and use one of the demo accounts:
-
-| Role | Username | Password | Permissions |
-|---|---|---|---|
-| Staff | `staff` | `demo1234` | View and create reports |
-| Lead | `lead` | `demo1234` | Staff permissions + change status |
-| Admin | `admin` | `demo1234` | Full workflow access |
-
-Development mode uses an in-memory database and seeds three realistic sample reports.
-
-## Run the production-like stack
-
-```bash
-docker compose up --build
-```
-
-This starts PostgreSQL, waits for its health check, applies the Flyway migration, and starts OpsHub at `http://localhost:8080`.
-
-## API surface
-
-| Method | Endpoint | Purpose |
-|---|---|---|
-| `GET` | `/api/dashboard` | Aggregated operations metrics |
-| `GET` | `/api/incidents` | Search/filter incidents |
-| `GET` | `/api/incidents/{id}` | Incident details |
-| `POST` | `/api/incidents` | Validate and create a report |
-| `PATCH` | `/api/incidents/{id}/status` | Lead-only status transition |
-| `GET` | `/api/incidents/{id}/history` | Audit timeline |
-
-## Tests
-
-```bash
-mvn verify
-```
-
-The test suite covers authentication, authorization, request validation, business logic, and audit-event creation.
-
+## Development Status
+This is a learning and portfolio project that is still being developed and improved.
