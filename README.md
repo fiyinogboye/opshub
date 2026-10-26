@@ -80,24 +80,3 @@ mvn verify
 
 The test suite covers authentication, authorization, request validation, business logic, and audit-event creation.
 
-## Before putting this on a résumé
-
-Do not just memorize the feature list. Be able to explain:
-
-1. Why controllers, services, and repositories are separate.
-2. How CSRF protection differs from authentication and authorization.
-3. Why audit events are separate records instead of a text field on an incident.
-4. Why production uses schema migrations rather than `ddl-auto=create`.
-5. What happens from a click on **Create report** until PostgreSQL commits the row.
-
-Then add at least one feature yourself. The best next feature is a shift-handoff board with scheduled ownership and overdue-report notifications.
-
-## Honest résumé draft
-
-**OpsHub — Java, Spring Boot, PostgreSQL, JavaScript, Docker**
-
-- Developed a role-based incident-management application with searchable reporting workflows, audit history, and dashboard metrics for multi-building campus operations.
-- Designed REST endpoints and a relational persistence layer using Spring Boot, Spring Data JPA, PostgreSQL, validation, and transactional service logic.
-- Added automated authorization/API tests, Flyway database migrations, Docker configuration, and a GitHub Actions CI pipeline.
-
-Only use these bullets after you understand the implementation and have made meaningful changes of your own.
